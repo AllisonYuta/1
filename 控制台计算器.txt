@@ -1,0 +1,37 @@
+using System;
+
+namespace _2002231
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("请输入两个数字");
+            int num1 = int.Parse(Console.ReadLine());
+            int num2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("请输入运算符：");
+            String op = Console.ReadLine();
+            Console.WriteLine("运算结果为：");
+            switch (op)
+            {
+                case "+":
+                    Console.WriteLine(num1+num2);
+                    break;
+                case "-":
+                    Console.WriteLine(num1 -num2);
+                    break;
+                case "*":
+                    Console.WriteLine(num1 * num2);
+                    break;
+                case "/":
+                    Console.WriteLine(num1 /num2);
+                    break;
+                default:
+                    Console.WriteLine("输入错误");
+                    break;
+
+            }
+            
+        }
+    }
+}
