@@ -1,0 +1,25 @@
+using System;
+
+namespace _200228
+{
+    class Program
+    {
+  
+        static void Main(string[] args)
+        {
+            Console.WriteLine("请输入数字");
+            String s = Console.ReadLine();
+            Console.WriteLine("该数字的所有素数因子为");
+            if (int.TryParse(s, out int num)){
+                for (int i = 2; i *i<= num; i++)
+                {
+                    while (num % i == 0)
+                    {
+                        Console.WriteLine(i);
+                        num /= i;
+                    }
+                }
+             }
+        }
+    }
+}

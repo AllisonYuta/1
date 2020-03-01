@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace _2002281
+{
+    class Array
+    {
+        public static void Min(int[] A, out int min)
+        {
+            
+            for (int i = 0; i < A.Length; i++)
+            {
+                if (A[i] < A[0])
+                    A[0] = A[i];
+            }
+            min = A[0];
+
+        }
+        public static void Max(int[] A, out int max)
+        {
+            for (int i = 0; i <A.Length; i++)
+            {
+                if (A[i] > A[0])
+                    A[0] = A[i];
+            }
+            max = A[0];
+        }
+        public static void Average(int[] A, out int average, out int sum)
+        {
+            int Sum = 0;
+            foreach (int num in A)
+                Sum += num;
+            sum = Sum;
+            average = sum / A.Length;
+
+        }
+
+
+        static void Main(string[] args)
+        {
+            int[] A = { 6, 8, 4, 3, 2, 1 };
+            Array.Min(A, out int min);
+            Array.Max(A, out int max);
+            Array.Average(A,out int average ,out int sum);
+            Console.WriteLine("最大值" + max);
+            Console.WriteLine("最小值" + min);
+            Console.WriteLine("和" + sum);
+            Console.WriteLine("均值" + average);
+        }
+    }
+}
