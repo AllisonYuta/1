@@ -1,0 +1,122 @@
+using System;
+
+namespace _200306
+{
+    public interface Shape
+    {
+       public Double getArea { get; }
+    }
+
+    public class Triangle :Shape
+    {
+        private Double length;
+        private Double high;
+        public Triangle(Double l,Double h)
+        {
+            if (l > 0 && h > 0)
+            {
+                length = l;
+                high = h;
+            }
+            else
+            {
+                Console.WriteLine("输入错误");
+            }
+        }
+    
+        public Double getArea
+        {
+            get => length * high / 2;
+        }
+ 
+    }
+
+    public class Square : Shape
+    {
+        private Double side;
+        public Square(Double s)
+        {
+            if (s>0)
+            {
+                side = s;
+            }
+            else
+            {
+                Console.WriteLine("输入错误");
+            }
+        }
+        public Double getArea
+        {
+            get => side * side;
+        }
+    }
+
+    public class Rectangle : Shape
+    {
+        private Double length;
+        private Double width;
+        public Rectangle(Double w, Double l)
+        {
+            if (w > 0 && l > 0)
+            {
+                length = l;
+                width =w;
+            }
+            else
+            {
+                Console.WriteLine("输入错误");
+            }
+        }
+        public Double getArea
+        {
+           get=> length * width;
+        }
+    }
+
+    class ShapeFactory
+    {
+        private static Random R = new Random();
+        public static Shape GetShape(int shapeType)
+        {
+            switch (shapeType)
+            {
+                case 0:
+                    Console.WriteLine("长方形");
+                    return new Rectangle(l:10*R.NextDouble(),w:10*R.NextDouble());
+                case 1:
+                    Console.WriteLine("三角形");
+                    return new Triangle(l: 10 * R.NextDouble(), h: 10 * R.NextDouble());
+                case 2:
+                    Console.WriteLine("正方形");
+                    return new Square(s: 10 * R.NextDouble());
+                default:
+                    throw new ArgumentException("Unknow Shape");
+            }
+        }
+    }
+    class drawShape
+    {
+        public static Double sum;
+        public static void Main(String[] args)
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                String s = Console.ReadLine();
+                 int.TryParse(s,out int shapeType);
+                Shape A=ShapeFactory.GetShape(shapeType);
+                Double area = A.getArea;
+                Console.WriteLine("的面积为"+area);
+                sum += area;
+            }
+            Console.WriteLine("总面积为" + sum);
+
+
+
+        }
+    }
+    
+
+
+
+
+}
