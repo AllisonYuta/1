@@ -1,0 +1,42 @@
+        //将所有订单转为Xml文件
+        public static void Export()
+        {
+            OrderService orderService = new OrderService();
+            XmlSerializer xml1= new XmlSerializer(typeof(List<Order>));
+            XmlSerializer xml2 = new XmlSerializer(typeof(List<OrderItem>));
+            using(FileStream fs=new FileStream("Order.xml", FileMode.Create))
+            {using(FileStream fs2=new FileStream("OrderItem.xml", FileMode.Create))
+                {
+                    xml2.Serialize(fs2, orderService.orderitems);
+                }
+                xml1.Serialize(fs, orders);
+            }
+            Console.WriteLine("订单明细的xml文件是");
+            Console.WriteLine(File.ReadAllText("OrderItem.xml"));
+            Console.WriteLine("订单的xml文件是");
+            Console.WriteLine(File.ReadAllText("Order.xml"));
+        }
+
+        //将xml文件载入订单
+        public void Import()
+        {
+            XmlSerializer xml1 = new XmlSerializer(typeof(List<Order>));
+            XmlSerializer xml2 = new XmlSerializer(typeof(List<OrderItem>));
+            using (FileStream fs3 = new FileStream("Order.xml", FileMode.Open))
+            { using (FileStream fs4 = new FileStream("OrderItem.xml", FileMode.Open))
+                {
+                    {
+                        List<OrderItem> orderItems = (List<OrderItem>)xml2.Deserialize(fs4);
+                        List<Order> orders = (List<Order>)xml1.Deserialize(fs3);
+                        Console.WriteLine("\nDeserialized from s.xml"); 
+                        orders.ForEach(order => Console.WriteLine(order));
+                        orderItems.ForEach(orderitem => Console.WriteLine(orderitem));
+                    }
+                }
+                
+               
+            }
+               
+       
+
+        }
